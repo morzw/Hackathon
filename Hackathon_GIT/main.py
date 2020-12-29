@@ -3,7 +3,7 @@ import random
 
 winners = []
 
-wirs = 575
+ori = "it's for you"
 
 def random_teams(teams_list):
     """
