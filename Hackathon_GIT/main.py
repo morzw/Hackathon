@@ -3,6 +3,7 @@ import random
 
 winners = []
 
+wirs = 575
 
 def random_teams(teams_list):
     """
