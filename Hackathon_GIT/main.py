@@ -1,9 +1,9 @@
 import operator
 import random
 
+
 winners = []
 
-ori = "it's for you"
 
 def random_teams(teams_list):
     """
