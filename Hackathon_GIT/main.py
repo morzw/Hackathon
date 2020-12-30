@@ -5,33 +5,6 @@ import random
 winners = []
 
 
-def random_teams(teams_list):
-    """
-    :param teams_list: list of four team names (list of string)
-    :return: prints the random division into two groups in the desired format
-    """
-    team1 = []
-    team2 = []
-    random_name = random.choice(teams_list)
-    team1.append(random_name)
-    teams_list.remove(random_name)
-    random_name2 = random.choice(teams_list)
-    team1.append(random_name2)
-    teams_list.remove(random_name2)
-    team2.extend(teams_list)
-    print(u"\u001B[31m*~*~*Welcome to Keyboard Spamming Battle Royal*~*~*\n"
-          u"\u001B[35mGroup 1:\n"
-          "==")
-    for name in team1:
-        print(name)
-    print(u"\u001B[33mGroup 2:\n"
-          "==")
-    for name2 in team2:
-        print(name2)
-    print(u"\u001B[31mStart pressing keys on your keyboard as fast as you can!!")
-    fun_facts()
-
-
 def winners_statistics(score1, score2):
     """
     :param score1: tuple of the first team results - (team name, score)
