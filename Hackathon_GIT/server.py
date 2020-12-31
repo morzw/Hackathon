@@ -7,7 +7,6 @@ import random
 
 FORMAT = "32s 1s 40s 1s 256s 256s"
 bufferSize = 1024
-clients = []
 points = 0
 teams_list = []
 array = [1, 1, 2, 2]
@@ -20,6 +19,17 @@ team_2 = []
 index_counter = 0
 t_end = time.time() + 10
 thread_count = 0
+
+
+def fun_facts():
+    """
+    :return: prints randomly a fun fact :)
+    """
+    list_of_facts = ["More Than 80% of Daily Emails in the U.S. are Spam",
+                     "The Parts for the Modern Computer Were First Invented in 1833",
+                     "The First Gigabyte Drive Cost $40,000", "MIT Has Computers That can Detect Fake Smiles"]
+    fact = random.choice(list_of_facts)
+    return ("Fun Fact:\n" + fact)
 
 
 def play_the_game_thread_group_1(client, address):
@@ -100,7 +110,8 @@ def on_new_client(clientSocket, addr):
         else:
             winning_group = "Group 1"
             team_winners = team_2[0] + team_2[1]
-        finish_message = "Game over!\nGroup 1 typed in " + str(counter1) + " characters. Group 2 typed in " \
+        finish_message = str(fun_facts()) + "\n" + "\nGame over!\nGroup 1 typed in " + str(
+            counter1) + " characters. Group 2 typed in " \
                          + str(counter2) + " characters.\n" + winning_group + " wins!\n\n" \
                          + "Congratulations to the winners:\n==\n" + "" + team_winners
         clientSocket.send(finish_message.encode())
@@ -139,7 +150,7 @@ localPort = 7700
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 UDPServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-UDPServerSocket.bind(('', localPort))  # TODO - write the IP
+UDPServerSocket.bind(('', localPort))
 print("Server started' listening on IP address 172.1.0.52")
 thread = threading.Thread(target=group_name_client_thread, args=())
 thread.start()
