@@ -43,8 +43,8 @@ while time.time() < t_end:
                     t_end3 = time.time() + 10
                     while time.time() < t_end3:
                         # get key press and sent to server over tcp connection
-                        char = msvcrt.getch()
-                        pressedKey = char.decode('ASCII')
+                        key_pressed = msvcrt.getch()
+                        pressedKey = key_pressed.decode('ASCII')
                         ClientSock.send(pressedKey.encode())
                     # after game is finished - get and print results message
                     results_message = ClientSock.recv(bufferSize).decode()
