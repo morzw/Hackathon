@@ -23,12 +23,14 @@ while time.time() < t_end:
         msg = struct.unpack('<3Q', msg1[0])
         msg += msg1[1]
         if msg[0] == 4276993775 and msg[1] == 2:
-            print("“Received offer from " + msg[3] + ", attempting to connect...")
+            print("Received offer from " + msg[3] + ", attempting to connect...")
             tcp_port = msg[2]
             try:
-                ClientSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+                letters = string.ascii_lowercase #TODO - delete
+                result_str = ''.join(random.choice(letters) for i in range(5)) #TODO - delete
+                ClientSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 ClientSock.connect(('localhost', tcp_port))
-                team_name = "MoRaz\n" 
+                team_name = result_str+"\n" #TODO - change for team name
                 ClientSock.send(team_name.encode())
             except:
                 break
