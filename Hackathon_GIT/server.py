@@ -151,13 +151,13 @@ UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 UDPServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 UDPServerSocket.bind(('', localPort))
-print("Server started' listening on IP address 172.1.0.52")
+print(u"\u001B[32mServer started' listening on IP address 172.1.0.52")
 thread = threading.Thread(target=group_name_client_thread, args=())
 thread.start()
 while time.time() < t_end:
     try:
-        MSG = struct.pack('<3Q', 0xfeedbeef, 0x2, 0xA)
-        UDPServerSocket.sendto(MSG, ('<broadcast>', 13117))
+        offer_message = struct.pack('<3Q', 0xfeedbeef, 0x2, 0xA)
+        UDPServerSocket.sendto(offer_message, ('<broadcast>', 13117))
         time.sleep(1)
     except:
         time.sleep(1)
@@ -166,6 +166,6 @@ while time.time() < t_end:
 time.sleep(10)
 print("Game over, sending out offer requests...")
 while True:
-    MSG = struct.pack('<3Q', 0xfeedbeef, 0x2, 0xA)
-    UDPServerSocket.sendto(MSG, ('<broadcast>', 13117))
+    offer_message = struct.pack('<3Q', 0xfeedbeef, 0x2, 0xA)
+    UDPServerSocket.sendto(offer_message, ('<broadcast>', 13117))
     time.sleep(1)
